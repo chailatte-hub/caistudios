@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a Session · cai studios</title>
+<meta name="description" content="Book an at-home personal colour analysis session in Singapore with cai studios. 1:1, 2:1 and 3:1 sessions available.">
+<link rel="canonical" href="https://cai-studios.com/book/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#31337f">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="cai studios">
+<meta property="og:locale" content="en_SG">
+<meta property="og:title" content="Book a Session · cai studios">
+<meta property="og:description" content="At-home personal colour analysis in Singapore. Pick your session and book a time.">
+<meta property="og:image" content="https://cai-studios.com/assets/og.jpg">
+<meta property="og:url" content="https://cai-studios.com/book/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #31337f;
+    --line: rgba(255,255,255,.4);
+    --glass: rgba(40,42,110,.28);
+    --font: "Montserrat", system-ui, sans-serif;
+    --serif: "Gloock", Georgia, serif;
+  }
+  html { background: var(--ink); min-height: 100%; }
+  /* Soft colour-field gradient in the style of the homepage artwork.
+     It's drawn on the body, so it stretches over the full page height. */
+  body {
+    font-family: var(--font); color: #fff; min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(60% 22% at 22% 8%,  rgba(78,170,226,.95), transparent 72%),
+      radial-gradient(45% 18% at 70% 30%, rgba(40,44,140,.9),  transparent 72%),
+      radial-gradient(50% 20% at 8% 52%,  rgba(64,140,210,.75), transparent 72%),
+      radial-gradient(55% 18% at 92% 62%, rgba(110,190,236,.6), transparent 72%),
+      radial-gradient(60% 14% at 55% 96%, rgba(225,236,250,.55), transparent 72%),
+      radial-gradient(38% 16% at 0% 100%, rgba(214,96,84,.85),  transparent 72%),
+      linear-gradient(180deg, #2f3a8f 0%, #31337f 45%, #343a8c 100%);
+  }
+
+  .wrap { width: min(960px, 100% - 40px); margin: 0 auto; padding: 32px 0 64px; }
+
+  header { display: flex; justify-content: space-between; align-items: center; }
+  .logo img { display: block; height: 64px; width: auto; }
+  .back {
+    color: #fff; text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; opacity: .85;
+    padding: 8px 2px; border-bottom: 1px solid transparent;
+  }
+  .back:hover, .back:focus-visible { opacity: 1; border-color: #fff; outline: none; }
+
+  .intro { margin: 48px 0 32px; text-align: center; }
+  .eyebrow { font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 8vw, 64px); line-height: 1.05; margin-top: 10px; }
+  .intro p { margin-top: 14px; font-size: 15px; line-height: 1.5; opacity: .9; }
+
+  /* Session picker */
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .option {
+    position: relative; text-align: left; cursor: pointer;
+    font: inherit; color: #fff;
+    padding: 24px 22px 22px; border-radius: 20px;
+    border: 1px solid var(--line); background: var(--glass);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    transition: background .25s, color .25s, border-color .25s, transform .25s;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .option:hover { background: rgba(255,255,255,.16); transform: translateY(-2px); }
+  .option:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .option[aria-pressed="true"] {
+    background: rgba(255,255,255,.24); border-color: #fff; transform: none;
+    box-shadow: inset 0 0 0 1px #fff, 0 8px 30px rgba(20,22,80,.25);
+  }
+  .option .tag {
+    position: absolute; top: -11px; left: 22px;
+    font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px; background: #fff; color: var(--ink);
+  }
+  .option .name { font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  .option .who { font-size: 14px; opacity: .85; }
+  .option .price { margin-top: 14px; font-size: 24px; font-weight: 600; }
+  .option .price small { font-size: 14px; font-weight: 400; opacity: .85; }
+  .option .meta { font-size: 14px; opacity: .85; line-height: 1.6; }
+  .option .cta { margin-top: 14px; font-size: 14px; font-weight: 600; }
+
+  /* Calendar panel */
+  .panel {
+    margin-top: 24px; border-radius: 20px; background: #fff; color: var(--ink);
+    overflow: hidden; scroll-margin-top: 16px;
+  }
+  .panel[hidden] { display: none; }
+  .panel-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    padding: 18px 22px; border-bottom: 1px solid rgba(49,51,127,.12);
+  }
+  .panel-head strong { font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .panel-head a { color: var(--ink); font-size: 14px; }
+  .cal { min-height: 560px; overflow: auto; }
+  .cal[hidden] { display: none; }
+  .loading { padding: 48px 22px; text-align: center; opacity: .6; font-size: 15px; }
+
+  /* Details */
+  .details { margin-top: 40px; display: grid; gap: 16px; }
+  .included ul { grid-template-columns: repeat(2, 1fr); column-gap: 28px; }
+  .included figure { margin-top: 22px; }
+  .fits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .fits img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; display: block; }
+  .fits-note { margin-top: 10px; font-size: 13px; opacity: .8; }
+  .stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card {
+    padding: 24px 22px; border-radius: 20px;
+    border: 1px solid var(--line); background: var(--glass);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  }
+  .card h2 { font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; }
+  .card ul { list-style: none; display: grid; gap: 8px; }
+  .card li { font-size: 14px; line-height: 1.45; padding-left: 20px; position: relative; opacity: .92; }
+  .card li::before { content: "✦"; position: absolute; left: 0; font-size: 11px; top: 3px; }
+  .card p { font-size: 14px; line-height: 1.5; opacity: .92; }
+  .card p + p { margin-top: 10px; }
+
+  footer { margin-top: 40px; text-align: center; font-size: 14px; opacity: .85; }
+  footer a { color: #fff; }
+
+  @media (max-width: 760px) {
+    .options { grid-template-columns: 1fr; gap: 20px; }
+    .included ul { grid-template-columns: 1fr; }
+    .fits { grid-template-columns: repeat(2, 1fr); }
+    .stack { grid-template-columns: 1fr; }
+    .intro { margin: 32px 0 28px; }
+    .logo img { height: 52px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .option { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/" aria-label="cai studios home"><img src="/assets/logo.svg" alt="cai studios"></a>
+    <a class="back" href="/">← Home</a>
+  </header>
+
+  <section class="intro">
+    <div class="eyebrow">Find your colour</div>
+    <h1>book a session</h1>
+    <p>Personal colour analysis in the comfort of your own home, anywhere in Singapore.</p>
+  </section>
+
+  <section aria-label="Choose a session">
+    <div class="options" role="group" aria-label="Session type">
+      <button class="option" type="button" aria-pressed="false" aria-controls="panel"
+              data-slug="1-1" data-label="1:1 Personal Colour Analysis">
+        <span class="name">1:1 session</span>
+        <span class="who">Personal colour analysis, just you</span>
+        <span class="price">$210</span>
+        <span class="meta">90–120 mins<br>$50 deposit</span>
+        <span class="cta">Choose a time →</span>
+      </button>
+      <button class="option" type="button" aria-pressed="false" aria-controls="panel"
+              data-slug="2-1" data-label="2:1 Personal Colour Analysis">
+        <span class="tag">Most popular</span>
+        <span class="name">2:1 session</span>
+        <span class="who">Get draped together with a friend</span>
+        <span class="price">$200 <small>per pax</small></span>
+        <span class="meta">120–150 mins · $400 total<br>$100 deposit</span>
+        <span class="cta">Choose a time →</span>
+      </button>
+      <button class="option" type="button" aria-pressed="false" aria-controls="panel"
+              data-slug="3-1" data-label="3:1 Personal Colour Analysis">
+        <span class="name">3:1 session</span>
+        <span class="who">Bring two friends along</span>
+        <span class="price">$190 <small>per pax</small></span>
+        <span class="meta">150–180 mins · $570 total<br>$150 deposit</span>
+        <span class="cta">Choose a time →</span>
+      </button>
+    </div>
+
+    <div class="panel" id="panel" hidden>
+      <div class="panel-head">
+        <strong id="panel-title">Choose a time</strong>
+        <a id="panel-link" href="https://cal.com/cai-studios" target="_blank" rel="noopener">Calendar not loading? Open it here ↗</a>
+      </div>
+      <div class="cal" id="cal-1-1" hidden><div class="loading">Loading calendar…</div></div>
+      <div class="cal" id="cal-2-1" hidden><div class="loading">Loading calendar…</div></div>
+      <div class="cal" id="cal-3-1" hidden><div class="loading">Loading calendar…</div></div>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="card included">
+      <div>
+      <h2>What's included</h2>
+      <ul>
+        <li>An introduction to personal colour theory</li>
+        <li>Analysis of your skin tone, eye colour and hair colour</li>
+        <li>Colour draping to find your best shades</li>
+        <li>Hair, accessory and fashion advice tailored to your palette</li>
+        <li>Makeup recommendations to enhance your natural beauty</li>
+        <li>A report of your best and worst colours</li>
+      </ul>
+      </div>
+      <figure>
+        <div class="fits">
+          <img src="/assets/fits-spring.jpg" alt="Spring palette outfit board" loading="lazy">
+          <img src="/assets/fits-summer.jpg" alt="Summer palette outfit board" loading="lazy">
+          <img src="/assets/fits-autumn.jpg" alt="Autumn palette outfit board" loading="lazy">
+          <img src="/assets/fits-winter.jpg" alt="Winter palette outfit board" loading="lazy">
+        </div>
+        <figcaption class="fits-note">Outfit ideas for each season, from our <a href="https://www.instagram.com/cai__studios/" target="_blank" rel="noopener" style="color:#fff">Instagram</a>.</figcaption>
+      </figure>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h2>House calls only</h2>
+        <p>We come to you. Just enter your address when you book.</p>
+      </div>
+      <div class="card">
+        <h2>Deposit</h2>
+        <p>A $50 deposit per person secures your session and goes towards your final payment.</p>
+      </div>
+      <div class="card">
+        <h2>Before your session</h2>
+        <p>Bring your makeup pouch, and come with little to no makeup!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Questions? DM us on <a href="https://www.instagram.com/cai__studios/" target="_blank" rel="noopener">Instagram</a>.
+  </footer>
+</div>
+
+<script>
+  // Cal.com embed loader (official snippet)
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  const USER = "cai-studios";
+  const options = document.querySelectorAll(".option");
+  const panel = document.getElementById("panel");
+  const title = document.getElementById("panel-title");
+  const link = document.getElementById("panel-link");
+  const loaded = {};
+
+  function select(btn, scroll) {
+    const slug = btn.dataset.slug;
+    options.forEach(o => o.setAttribute("aria-pressed", String(o === btn)));
+    panel.hidden = false;
+    title.textContent = btn.dataset.label;
+    link.href = `https://cal.com/${USER}/${slug}`;
+    document.querySelectorAll(".cal").forEach(c => c.hidden = c.id !== `cal-${slug}`);
+
+    // Each session's calendar is loaded once, the first time it's picked
+    if (!loaded[slug]) {
+      loaded[slug] = true;
+      const ns = "s" + slug.replace("-", "");
+      const el = document.getElementById(`cal-${slug}`);
+      el.innerHTML = "";
+      Cal("init", ns, { origin: "https://cal.com" });
+      Cal.ns[ns]("inline", {
+        elementOrSelector: `#cal-${slug}`,
+        calLink: `${USER}/${slug}`,
+        config: { layout: "month_view", theme: "light" }
+      });
+      Cal.ns[ns]("ui", {
+        theme: "light",
+        hideEventTypeDetails: false,
+        layout: "month_view",
+        cssVarsPerTheme: { light: { "cal-brand": "#31337f" } }
+      });
+    }
+    if (location.hash !== `#${slug}`) history.replaceState(null, "", `#${slug}`);
+    if (scroll) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  options.forEach(btn => btn.addEventListener("click", () => select(btn, true)));
+
+  // Link straight to a session, e.g. cai-studios.com/book/#2-1
+  const pre = document.querySelector(`.option[data-slug="${location.hash.slice(1)}"]`);
+  if (pre) select(pre, false);
+</script>
+</body>
+</html>
