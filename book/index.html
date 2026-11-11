@@ -93,7 +93,7 @@
 
   /* Calendar panel */
   .panel {
-    margin-top: 24px; border-radius: 20px; background: #fff; color: var(--ink);
+    margin-top: 24px; scroll-margin-top: 16px; border-radius: 20px; background: #fff; color: var(--ink);
     overflow: hidden; scroll-margin-top: 16px;
   }
   .panel[hidden] { display: none; }
@@ -132,6 +132,9 @@
 
   @media (max-width: 760px) {
     .options { grid-template-columns: 1fr; gap: 20px; }
+    .panel { margin-top: -8px; }
+    .option { scroll-margin-top: 20px; }
+    .option[aria-pressed="true"] .cta { opacity: .75; }
     .included ul { grid-template-columns: 1fr; }
     .fits { grid-template-columns: repeat(2, 1fr); }
     .stack { grid-template-columns: 1fr; }
@@ -249,10 +252,31 @@
   const link = document.getElementById("panel-link");
   const loaded = {};
 
+  // On mobile the calendar opens right under the tapped card, like an accordion.
+  // On desktop it sits below the row of three cards.
+  const mobile = matchMedia("(max-width: 760px)");
+  const row = document.querySelector(".options");
+  function placePanel() {
+    const sel = document.querySelector('.option[aria-pressed="true"]');
+    if (mobile.matches && sel) sel.after(panel);
+    else row.after(panel);
+  }
+  mobile.addEventListener("change", placePanel);
+
+  function collapse() {
+    options.forEach(o => o.setAttribute("aria-pressed", "false"));
+    panel.hidden = true;
+    options.forEach(o => o.querySelector(".cta").textContent = "Choose a time →");
+    history.replaceState(null, "", location.pathname);
+  }
+
   function select(btn, scroll) {
     const slug = btn.dataset.slug;
+    // Tapping the open card again on mobile closes it
+    if (mobile.matches && btn.getAttribute("aria-pressed") === "true") return collapse();
     options.forEach(o => o.setAttribute("aria-pressed", String(o === btn)));
     panel.hidden = false;
+    placePanel();
     title.textContent = btn.dataset.label;
     link.href = `https://cal.com/${USER}/${slug}`;
     document.querySelectorAll(".cal").forEach(c => c.hidden = c.id !== `cal-${slug}`);
@@ -276,8 +300,9 @@
         cssVarsPerTheme: { light: { "cal-brand": "#31337f" } }
       });
     }
+    options.forEach(o => o.querySelector(".cta").textContent = (mobile.matches && o === btn) ? "Hide calendar ↑" : "Choose a time →");
     if (location.hash !== `#${slug}`) history.replaceState(null, "", `#${slug}`);
-    if (scroll) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (scroll) (mobile.matches ? btn : panel).scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   options.forEach(btn => btn.addEventListener("click", () => select(btn, true)));
