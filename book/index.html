@@ -227,7 +227,7 @@
 <div class="wrap">
   <header>
     <a class="logo" href="/">căi studios</a>
-    <a class="back" href="/">← Home</a>
+    <span><a class="back" href="https://www.instagram.com/cai__studios/" target="_blank" rel="noopener">Instagram</a>&nbsp;&nbsp;&nbsp;<a class="back" href="/">← Home</a></span>
   </header>
 
   <section class="intro">
@@ -379,6 +379,67 @@
   // Link straight to a session, e.g. cai-studios.com/book/#2-1
   const pre = document.querySelector(`.option[data-slug="${location.hash.slice(1)}"]`);
   if (pre) select(pre, false);
+</script>
+<!-- Away notice: shows once per visit, stops showing automatically after 31 March 2027 -->
+<style>
+  .away[hidden] { display: none; }
+  .away { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px;
+          background: rgba(20,20,18,.42); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .away-card { position: relative; width: min(460px, 100%); background: #ebebe8; color: #000;
+               padding: 20px 22px 22px; font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; }
+  .away-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px;
+              padding-bottom: 12px; border-bottom: 1px solid #000; }
+  .away-x { background: none; border: 0; font: inherit; font-size: 22px; line-height: 1; cursor: pointer; color: #000; padding: 0 2px; }
+  .away-snow { margin-top: 28px; font-size: 18px; letter-spacing: .08em; color: #5f5f5c; font-family: system-ui, "Segoe UI Symbol", "Noto Sans", sans-serif; }
+  .away h2 { margin: 12px 0 0; font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 50;
+             font-weight: 400; font-size: clamp(40px, 8vw, 56px); line-height: .95; letter-spacing: -.02em; }
+  .away p { margin: 16px 0 0; font-size: 15px; line-height: 1.5; max-width: 36ch; }
+  .away-kao { margin-top: 14px; font-size: 26px; line-height: 1; font-family: system-ui, "Apple Color Emoji", "Segoe UI Symbol", "Noto Sans", sans-serif; }
+  .away .soft a { color: #000; }
+  .away .soft { color: #5f5f5c; font-size: 13px; margin-top: 10px; }
+  .away-actions { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .away-actions a, .away-actions button { font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none;
+               padding: 11px 20px; border-radius: 999px; border: 1px solid #000; transition: background .2s, color .2s; }
+  .away-actions a { background: #000; color: #ebebe8; }
+  .away-actions a:hover { background: transparent; color: #000; }
+  .away-actions button { background: transparent; color: #000; }
+  .away-actions button:hover { background: #000; color: #ebebe8; }
+  .away :focus-visible { outline: 1.5px solid #000; outline-offset: 3px; }
+</style>
+<div class="away" id="away" role="dialog" aria-modal="true" aria-labelledby="away-title" hidden>
+  <div class="away-card">
+    <div class="away-top"><span>Out of office</span><button class="away-x" type="button" aria-label="Close" data-close>×</button></div>
+    <div class="away-snow" aria-hidden="true">⋆꙳❅*°⋆❆.ೃ࿔*:･*❆ ₊⋆</div>
+    <h2 id="away-title">Oops, out frolicking in snow~</h2>
+    <div class="away-kao" aria-hidden="true">૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
+    <p>The drapes are packed away while I'm on the slopes. Snow is very flattering on every season, in case you were wondering.</p>
+    <p class="soft">Back in March 2027, and you can book a session now. Follow along on <a href="https://www.instagram.com/cai__studios/" target="_blank" rel="noopener">Instagram</a> in the meantime.</p>
+    <div class="away-actions">
+      <a href="/book/" data-close>Book a March session</a>
+      <button type="button" data-close>Just browsing</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var el = document.getElementById("away");
+    if (new Date() > new Date("2027-03-31T23:59:59+08:00")) return;
+    var seen = false;
+    try { seen = sessionStorage.getItem("cai-away") === "1"; } catch (e) {}
+    if (seen) return;
+    var last = document.activeElement;
+    function close() {
+      el.hidden = true;
+      try { sessionStorage.setItem("cai-away", "1"); } catch (e) {}
+      document.removeEventListener("keydown", onKey);
+      if (last && last.focus) last.focus();
+    }
+    function onKey(e) { if (e.key === "Escape") close(); }
+    el.querySelectorAll("[data-close]").forEach(function (b) { b.addEventListener("click", close); });
+    el.addEventListener("click", function (e) { if (e.target === el) close(); });
+    document.addEventListener("keydown", onKey);
+    setTimeout(function () { el.hidden = false; el.querySelector(".away-actions a").focus(); }, 600);
+  })();
 </script>
 </body>
 </html>
