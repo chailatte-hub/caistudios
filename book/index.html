@@ -7,7 +7,7 @@
 <meta name="description" content="Book an at-home personal colour analysis session in Singapore with cai studios. 1:1, 2:1 and 3:1 sessions available.">
 <link rel="canonical" href="https://cai-studios.com/book/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#31337f">
+<meta name="theme-color" content="#eef1fb">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -142,12 +142,41 @@
     .logo img { height: 52px; }
   }
   @media (prefers-reduced-motion: reduce) { .option { transition: none; } }
+
+  /* ---------- Light theme ---------- */
+  html { background: #f3f4fb; }
+  body {
+    color: var(--ink);
+    background:
+      radial-gradient(55% 20% at 18% 6%,  rgba(150,200,240,.75), transparent 72%),
+      radial-gradient(45% 18% at 82% 14%, rgba(196,198,240,.8),  transparent 72%),
+      radial-gradient(50% 18% at 6% 50%,  rgba(178,214,244,.55), transparent 72%),
+      radial-gradient(50% 18% at 96% 64%, rgba(206,200,244,.6),  transparent 72%),
+      radial-gradient(42% 16% at 0% 100%, rgba(248,190,176,.7),  transparent 72%),
+      radial-gradient(50% 16% at 100% 98%, rgba(170,210,242,.6), transparent 72%),
+      linear-gradient(180deg, #eef1fb 0%, #f6f6fc 50%, #f1f2fb 100%);
+  }
+  :root { --line: rgba(49,51,127,.16); --glass: rgba(255,255,255,.55); }
+  .back, .fits-note a, footer a { color: var(--ink) !important; }
+  .back:hover, .back:focus-visible { border-color: var(--ink); }
+  .intro p, .option .who, .option .meta, .option .price small, .card li, .card p, .fits-note, footer { color: rgba(49,51,127,.78); opacity: 1; }
+  .option { color: var(--ink); box-shadow: 0 2px 12px rgba(49,51,127,.05); }
+  .option:hover { background: rgba(255,255,255,.8); }
+  .option:focus-visible { outline-color: var(--ink); }
+  .option[aria-pressed="true"] {
+    background: #fff; border-color: var(--ink);
+    box-shadow: inset 0 0 0 1px var(--ink), 0 8px 28px rgba(49,51,127,.12);
+  }
+  .option .tag { background: var(--ink); color: #fff; }
+  .panel { box-shadow: 0 10px 40px rgba(49,51,127,.10); border: 1px solid var(--line); }
+  .card { box-shadow: 0 2px 12px rgba(49,51,127,.04); }
+  .card li::before { color: #e8735f; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <a class="logo" href="/" aria-label="cai studios home"><img src="/assets/logo.svg" alt="cai studios"></a>
+    <a class="logo" href="/" aria-label="cai studios home"><img src="/assets/logo-ink.svg" alt="cai studios"></a>
     <a class="back" href="/">← Home</a>
   </header>
 
