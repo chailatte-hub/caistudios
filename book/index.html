@@ -7,7 +7,7 @@
 <meta name="description" content="Book an at-home personal colour analysis session in Singapore with cai studios. 1:1, 2:1 and 3:1 sessions available.">
 <link rel="canonical" href="https://cai-studios.com/book/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#eef1fb">
+<meta name="theme-color" content="#ebebe8">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -171,18 +171,67 @@
   .panel { box-shadow: 0 10px 40px rgba(49,51,127,.10); border: 1px solid var(--line); }
   .card { box-shadow: 0 2px 12px rgba(49,51,127,.04); }
   .card li::before { color: #e8735f; }
+  /* ---------- Editorial theme (matches homepage) ---------- */
+  :root { --ink: #000; --paper: #ebebe8; --soft: #5f5f5c; --line: #000; --glass: transparent;
+          --font: "Inter Tight", "Helvetica Neue", Arial, sans-serif; --serif: "Fraunces", Georgia, serif; }
+  html, body { background: var(--paper) !important; }
+  body { color: var(--ink); font-size: 15px; }
+  .wrap { width: min(1120px, 100% - 40px); }
+  .logo { font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; }
+  .back { font-size: 13px; letter-spacing: 0; text-transform: none; font-weight: 400; }
+  .intro { text-align: left; margin: 56px 0 28px; padding-bottom: 18px; border-bottom: 1px solid var(--ink);
+           display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+  h1 { font-family: var(--serif); font-variation-settings: "SOFT" 50; font-weight: 400; font-size: clamp(48px, 7vw, 104px); line-height: .92; letter-spacing: -.02em; margin: 0; }
+  .intro p { margin: 0; max-width: 34ch; font-size: 13px; color: var(--soft) !important; text-align: right; }
+  .options { gap: 0; }
+  .option { border-radius: 0; border: 0; border-left: 1px solid var(--ink); background: none !important; box-shadow: none !important;
+            padding: 6px 22px 22px; backdrop-filter: none; -webkit-backdrop-filter: none; transform: none !important; }
+  .option:first-child { border-left: 0; padding-left: 0; }
+  .option .name { font-family: var(--serif); font-variation-settings: "SOFT" 50; font-weight: 400; font-size: clamp(56px, 6vw, 88px);
+                  line-height: .9; letter-spacing: -.03em; text-transform: none; order: 2; margin-top: 28px; }
+  .option .who { order: 1; font-size: 13px; color: var(--ink) !important; }
+  .option .price { order: 3; font-family: var(--serif); font-weight: 400; font-size: 28px; margin-top: 10px; }
+  .option .price small { font-family: var(--font); font-size: 12px; color: var(--soft) !important; }
+  .option .meta { order: 4; font-size: 12px; color: var(--soft) !important; }
+  .option .cta { order: 5; margin-top: 18px; align-self: flex-start; font-size: 13px; font-weight: 500;
+                 padding: 10px 18px; border: 1px solid var(--ink); border-radius: 999px; }
+  .option:hover .cta { background: var(--ink); color: var(--paper); }
+  .option[aria-pressed="true"] .cta { background: var(--ink); color: var(--paper); opacity: 1; }
+  .option[aria-pressed="true"] .name { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 10px; }
+  .option .tag { position: absolute; top: 6px; right: 22px; left: auto; background: none !important; color: var(--soft) !important;
+                 padding: 0; font-size: 12px; letter-spacing: 0; text-transform: none; font-weight: 400; margin-bottom: 2px; }
+  .panel { border-radius: 0; border: 1px solid var(--ink); box-shadow: none; margin-top: 28px; }
+  .panel-head { border-bottom: 1px solid var(--ink); }
+  .panel-head strong { font-size: 13px; letter-spacing: 0; text-transform: none; font-weight: 500; color: var(--ink); }
+  .panel-head a { color: var(--ink); }
+  .details { margin-top: 80px; }
+  .card { border-radius: 0; border: 0; border-top: 1px solid var(--ink); background: none; box-shadow: none; padding: 16px 0 0;
+          backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .card h2 { font-family: var(--serif); font-variation-settings: "SOFT" 50; font-weight: 400; font-size: 30px; letter-spacing: -.01em; text-transform: none; margin-bottom: 14px; }
+  .card li, .card p { color: var(--soft) !important; font-size: 14px; }
+  .card li::before { content: "–"; color: var(--ink); font-size: 14px; top: 0; }
+  .fits img { border-radius: 0; }
+  .fits-note { color: var(--soft) !important; }
+  .stack { gap: 28px; }
+  footer { text-align: left; color: var(--soft) !important; border-top: 1px solid var(--ink); padding-top: 16px; margin-top: 80px; font-size: 13px; }
+  footer a, .fits-note a { color: var(--ink) !important; }
+  @media (max-width: 760px) {
+    .intro p { text-align: left; }
+    .option, .option:first-child { border-left: 0; border-top: 1px solid var(--ink); padding: 14px 0 20px; }
+    .option .name { margin-top: 18px; }
+    .panel { margin-top: 0; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <a class="logo" href="/" aria-label="cai studios home"><img src="/assets/logo-ink.svg" alt="cai studios"></a>
+    <a class="logo" href="/">căi studios</a>
     <a class="back" href="/">← Home</a>
   </header>
 
   <section class="intro">
-    <div class="eyebrow">Find your colour</div>
-    <h1>book a session</h1>
+        <h1>Book a session</h1>
     <p>Personal colour analysis in the comfort of your own home, anywhere in Singapore.</p>
   </section>
 
@@ -190,7 +239,7 @@
     <div class="options" role="group" aria-label="Session type">
       <button class="option" type="button" aria-pressed="false" aria-controls="panel"
               data-slug="1-1" data-label="1:1 Personal Colour Analysis">
-        <span class="name">1:1 session</span>
+        <span class="name">1:1</span>
         <span class="who">Personal colour analysis, just you</span>
         <span class="price">$210</span>
         <span class="meta">90–120 mins<br>$50 deposit</span>
@@ -198,8 +247,8 @@
       </button>
       <button class="option" type="button" aria-pressed="false" aria-controls="panel"
               data-slug="2-1" data-label="2:1 Personal Colour Analysis">
-        <span class="tag">Most popular</span>
-        <span class="name">2:1 session</span>
+        <span class="tag">Most loved</span>
+        <span class="name">2:1</span>
         <span class="who">Get draped together with a friend</span>
         <span class="price">$200 <small>per pax</small></span>
         <span class="meta">120–150 mins · $400 total<br>$100 deposit</span>
@@ -207,7 +256,7 @@
       </button>
       <button class="option" type="button" aria-pressed="false" aria-controls="panel"
               data-slug="3-1" data-label="3:1 Personal Colour Analysis">
-        <span class="name">3:1 session</span>
+        <span class="name">3:1</span>
         <span class="who">Bring two friends along</span>
         <span class="price">$190 <small>per pax</small></span>
         <span class="meta">150–180 mins · $570 total<br>$150 deposit</span>
@@ -326,7 +375,7 @@
         theme: "light",
         hideEventTypeDetails: false,
         layout: "month_view",
-        cssVarsPerTheme: { light: { "cal-brand": "#31337f" } }
+        cssVarsPerTheme: { light: { "cal-brand": "#000000" } }
       });
     }
     options.forEach(o => o.querySelector(".cta").textContent = (mobile.matches && o === btn) ? "Hide calendar ↑" : "Choose a time →");
